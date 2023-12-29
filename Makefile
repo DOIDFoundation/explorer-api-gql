@@ -29,6 +29,13 @@ server:
 bundle:
 	cd internal/graphql/schema/; tools/make_bundle.sh
 
+TAG ?= "latest"
+.PHONY: docker
+docker:
+	docker build \
+    	    --network=host \
+    	    -f ./docker/Dockerfile -t "api-gql:$(TAG)" .
+
 test:
 	go test \
 	-ldflags="-X 'fantom-api-graphql/cmd/apiserver/build.Version=$(APP_VERSION)' -X 'fantom-api-graphql/cmd/apiserver/build.Time=$(BUILD_DATE)' -X 'fantom-api-graphql/cmd/apiserver/build.Compiler=$(BUILD_COMPILER)' -X 'fantom-api-graphql/cmd/apiserver/build.Commit=$(BUILD_COMMIT)' -X 'fantom-api-graphql/cmd/apiserver/build.CommitTime=$(BUILD_COMMIT_TIME)'" \
