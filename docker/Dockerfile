@@ -20,4 +20,4 @@ COPY --from=builder /src/build/apiserver /
 
 EXPOSE 8080
 
-ENTRYPOINT ["/api-server"]
+ENTRYPOINT ["/apiserver"]
