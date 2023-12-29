@@ -1,4 +1,4 @@
-FROM golang:1.17-alpine as builder
+FROM golang:1.21-alpine as builder
 
 RUN apk add --no-cache make gcc musl-dev linux-headers git
 
@@ -15,7 +15,7 @@ FROM alpine:latest
 
 RUN apk add --no-cache ca-certificates
 
-COPY --from=builder /src/build/api-server /
+COPY --from=builder /src/build/apiserver /
 ADD https://git.io/GeoLite2-City.mmdb city.mmdb
 
 EXPOSE 8080
