@@ -15,8 +15,8 @@ FROM alpine:latest
 
 RUN apk add --no-cache ca-certificates
 
+ADD https://git.io/GeoLite2-City.mmdb /city.mmdb
 COPY --from=builder /src/build/apiserver /
-ADD https://git.io/GeoLite2-City.mmdb city.mmdb
 
 EXPOSE 8080
 
